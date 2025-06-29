@@ -140,7 +140,7 @@ module controller(
 						W1: begin LIR = 1; PCINC = 1; end
 						W2: begin
 							case(IR)
-								ADD: begin S = 4'b1001; CIN = 1; ABUS = 1; DRW = 1; end
+								ADD: begin S = 4'b1001; CIN = 1; ABUS = 1; DRW = 1; LDZ = 1; LDC = 1; end
 								SUB: begin S = 4'b0110; ABUS = 1; DRW = 1; LDZ = 1; LDC = 1; end
 								AND: begin M = 1; S = 4'b1011; ABUS = 1; DRW = 1; LDZ = 1; end
 								INC: begin S = 4'b0000; ABUS = 1; DRW = 1; LDZ = 1; LDC = 1; end
