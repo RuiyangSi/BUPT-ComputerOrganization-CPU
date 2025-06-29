@@ -1,0 +1,67 @@
+# Quartus II 项目编译生成文件
+# 编译报告文件
+*.rpt
+*.summary
+*.pin
+*.map
+*.fit
+*.asm
+*.tan
+*.flow
+
+# 编程文件
+*.pof
+*.sof
+*.jic
+*.jam
+
+# 数据库文件
+db/
+incremental_db/
+
+# 备份文件
+*.bak
+*.backup
+
+# 临时文件
+*.tmp
+*.temp
+
+# 日志文件
+*.log
+*.logdb
+
+# 消息文件
+*.qmsg
+
+# 数据库相关文件
+*.cdb
+*.hdb
+*.rdb
+*.tdb
+*.ddb
+
+# 其他 Quartus 生成文件
+*.done
+*.hif
+*.xml
+*.txt
+*.html
+*.sci
+*.rvd
+*.cnf
+*.kpt
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 其他临时文件
+*~
+*.orig 

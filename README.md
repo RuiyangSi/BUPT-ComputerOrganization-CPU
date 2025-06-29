@@ -1,1 +1,3 @@
-# BUPT-ComputerOrganization-CPU
+# 硬布线控制器设计
+
+Basic 里面是基础的
