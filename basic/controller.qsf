@@ -36,13 +36,13 @@
 # -------------------------------------------------------------------------- #
 
 
-set_global_assignment -name FAMILY MAX3000A
-set_global_assignment -name DEVICE "EPM3032ALC44-10"
+set_global_assignment -name FAMILY MAX7000S
+set_global_assignment -name DEVICE "EPM7128SLC84-15"
 set_global_assignment -name TOP_LEVEL_ENTITY controller
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:50:57  JUNE 29, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION 9.1
 set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_blast_fpga
-set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
-set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name VERILOG_FILE controller.v
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name INCREMENTAL_COMPILATION OFF
