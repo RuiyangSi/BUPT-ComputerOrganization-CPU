@@ -91,13 +91,21 @@ module controller(
 		STOP = 1'b0; SHORT = 1'b0; LONG = 1'b0;
 		SSTO = 1'b0;
 		if(CLR_n == 1'b1) begin
-            case(SW)
+			case(SW)
 				READ_MEMORY: begin
 					if(STO == 1'b0) begin
 						if(W[0]) begin SBUS = 1; LAR = 1; STOP = 1; SSTO = 1; SHORT = 1; SELCTL = 1; end
 					end
 					else begin
-						if(W[0]) begin MBUS = 1; ARINC = 1; STOP = 1; SHORT = 1; SELCTL = 1; end
+						if(W[0]) begin MBUS = 1; ARINC = 1; STOP = 1; SHORT = 1; SELCTL = 1; SSTO = 1; end // Special: Add SSTO
+					end
+				end
+				WRITE_MEMORY: begin
+					if(STO == 1'b0) begin:
+						if(W[0]) begin SBUS = 1; LAR = 1; STOP = 1; SSTO = 1; SHORT = 1; SELCTL = 1; end
+					end
+					else begin
+						if(W[0]) begin SBUS = 1; MEMW = 1; ARINC = 1; STOP = 1; SHORT = 1; SELCTL = 1; end
 					end
 				end
 			endcase
