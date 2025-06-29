@@ -55,11 +55,10 @@ module controller(
 	output reg  LONG        // Long machine cycle
 );
 	localparam WRITE_REG = 3'b100, READ_REG = 3'b011, FETCH = 3'b000, READ_MEMORY = 3'b010, WRITE_MEMORY = 3'b001;
-	localparam ADD    = 4'b0001, SUB    = 4'b0010, AND_OP = 4'b0011,
+	localparam ADD    = 4'b0001, SUB    = 4'b0010, AND = 4'b0011,
 	           INC    = 4'b0100, LD     = 4'b0101, ST     = 4'b0110,
 	           JC     = 4'b0111, JZ     = 4'b1000, JMP    = 4'b1001,
-	           OUT_OP = 4'b1010, IRET   = 4'b1011, D1     = 4'b1100,
-	           BI     = 4'b1101, STP    = 4'b1110;
+	           STP    = 4'b1110;
 	localparam W1 = 3'b001, W2 = 3'b010, W3 = 3'b100;
 	// --- Internal State and Triggers ---
 	reg STO;    // The 1-bit state register for STO
@@ -136,9 +135,40 @@ module controller(
 					W2: begin SEL = 4'b1011; SELCTL = 1; STOP = 1; end
 					endcase
 				end
+				FETCH: begin
+					case(W)
+						W1: begin LIR = 1; PCINC = 1; end
+						W2: begin
+							case(IR)
+								ADD: begin S = 4'b1001; CIN = 1; ABUS = 1; DRW = 1; end
+								SUB: begin S = 4'b0110; ABUS = 1; DRW = 1; LDZ = 1; LDC = 1; end
+								AND: begin M = 1; S = 4'b1011; ABUS = 1; DRW = 1; LDZ = 1; end
+								INC: begin S = 4'b0000; ABUS = 1; DRW = 1; LDZ = 1; LDC = 1; end
+								LD: begin M = 1; S = 4'b1010; ABUS = 1; LAR = 1; LONG = 1; end
+								ST: begin M = 1; S = 4'b1111; ABUS = 1; LAR = 1; LONG = 1; end
+								JC: begin
+									case(C)
+										1'b1: begin PCADD = 1; end
+									endcase
+								end
+								JZ: begin
+									case(Z)
+										1'b1: begin PCADD = 1; end
+									endcase
+								end
+								JMP: begin M = 1; S = 4'b1111; ABUS = 1; LPC = 1; end
+								STP: begin STOP = 1; end
+							endcase
+						end
+						W3: begin
+							case(IR)
+								LD: begin DRW = 1; MBUS = 1; end
+								ST: begin S = 4'b1010; M = 1; ABUS = 1; MEMW = 1; end
+							endcase
+						end
+					endcase
+				end
 			endcase
-			
-            
 		end
 	end
 	
