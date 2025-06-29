@@ -101,7 +101,7 @@ module controller(
 					end
 				end
 				WRITE_MEMORY: begin
-					if(STO == 1'b0) begin:
+					if(STO == 1'b0) begin
 						if(W[0]) begin SBUS = 1; LAR = 1; STOP = 1; SSTO = 1; SHORT = 1; SELCTL = 1; end
 					end
 					else begin
