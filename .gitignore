@@ -8,6 +8,7 @@
 *.asm
 *.tan
 *.flow
+*.eda
 
 # 编程文件
 *.pof
@@ -18,6 +19,18 @@
 # 数据库文件
 db/
 incremental_db/
+
+# 仿真相关文件
+simulation/
+work/
+*.wlf
+*.mpf
+*.dpf
+*.cr.mti
+*.sdo
+*.vo
+*.xrf
+*.sft
 
 # 备份文件
 *.bak
@@ -40,6 +53,9 @@ incremental_db/
 *.rdb
 *.tdb
 *.ddb
+*.qdb
+*.qtl
+*.qpg
 
 # 其他 Quartus 生成文件
 *.done
@@ -51,6 +67,12 @@ incremental_db/
 *.rvd
 *.cnf
 *.kpt
+*_opt__lock
+*_info
+*_vmake
+*_tempmsg/
+*_temp/
+@_opt/
 
 # 系统文件
 .DS_Store
