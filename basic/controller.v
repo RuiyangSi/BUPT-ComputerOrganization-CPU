@@ -11,7 +11,7 @@ module controller(
 
 	// --- Timing Inputs ---
 	input       T3,         // Timing signal T3
-	input [3:1] W,          // Beat signals (W3, W2, W1)
+	input [2:0] W,          // Beat signals (W3, W2, W1)
 
 
 	// ---------------- OUTPUTS ----------------
@@ -59,11 +59,11 @@ module controller(
 	           INC    = 4'b0100, LD     = 4'b0101, ST     = 4'b0110,
 	           JC     = 4'b0111, JZ     = 4'b1000, JMP    = 4'b1001,
 	           STP    = 4'b1110;
-	localparam W1 = 3'b001, W2 = 3'b010, W3 = 3'b100;
+	localparam W0 = 3'b000, W1 = 3'b001, W2 = 3'b010, W3 = 3'b100;
 	// --- Internal State and Triggers ---
 	reg FLAG;    // The 1-bit state register for STO
-	
-	always @(negedge CLR_n, negedge T3) begin
+	reg [2:0] w;
+	always @(negedge T3, negedge CLR_n) begin
 		if(CLR_n == 0) begin
 			LPC <= 1'b0; PCINC <= 1'b0; PCADD <= 1'b0;
 			LAR <= 1'b0; ARINC <= 1'b0;
@@ -74,38 +74,44 @@ module controller(
 			MEMW <= 1'b0; ABUS <= 1'b0; SBUS <= 1'b0; MBUS <= 1'b0;
 			SEL <= 4'b0000; SELCTL <= 1'b0;
 			STOP <= 1'b0; SHORT <= 1'b0; LONG <= 1'b0;
+			w <= W1;
+		end
+		else if(w == 3'b000) begin
+			LPC <= 1'b0; PCINC <= 1'b0; PCADD <= 1'b0;
+			LAR <= 1'b0; ARINC <= 1'b0;
+			LIR <= 1'b0;
+			DRW <= 1'b0;
+			LDZ <= 1'b0; LDC <= 1'b0;
+			S <= 4'b0000; M <= 1'b0; CIN <= 1'b0;
+			MEMW <= 1'b0; ABUS <= 1'b0; SBUS <= 1'b0; MBUS <= 1'b0;
+			SEL <= 4'b0000; SELCTL <= 1'b0;
+			STOP <= 1'b0; SHORT <= 1'b0; LONG <= 1'b0;
+			w <= W1;
 		end
 		else begin
 			case(SW)
-				WRITE_REG: begin
+				READ_REG: begin
 					case(FLAG)
 						1'b0: begin
-							case(W)
-								W1: begin DRW <= 1'b1; SBUS <= 1'b1; SEL <= 4'b0011; SELCTL <= 1'b1; STOP <= 1'b1; end
-								W2: begin SEL <= 4'b0100; FLAG <= 1'b1; end
-								default: ;
+							case(w)
+								W1: begin SBUS <= 1; SEL <= 4'b0011; SELCTL <= 1; DRW <= 1; STOP <= 1; w <= W2; end
+								W2: begin SBUS <= 1; SEL <= 4'b0100; SELCTL <= 1; DRW <= 1; STOP <= 1; FLAG <= 1; w <= W1; end
+								default begin ; end
 							endcase
 						end
 						1'b1: begin
-							case(W)
-								W1: begin SEL <= 4'b1001; end
-								W2: begin SEL <= 4'b1110; end
-								default: ;
+							case(w)
+								W1: begin SBUS <= 1; SEL <= 4'b1001; SELCTL <= 1; DRW <= 1; STOP <= 1; w <= W2; end
+								W2: begin SBUS <= 1; SEL <= 4'b1110; SELCTL <= 1; DRW <= 1; STOP <= 1; w <= W0; LONG <= 1; end
+								default begin ; end
 							endcase
 						end
-						default: ;
 					endcase
 				end
-				READ_REG: begin
-					case(W)
-						W1: begin SEL <= 4'b0001; SELCTL <= 1; STOP <= 1; end
-						W2: begin SEL <= 4'b1011; end
-						default: ;
-					endcase
-				end
-				default: ;
 			endcase
 		end
+	
+		
 	end
 	
 	
