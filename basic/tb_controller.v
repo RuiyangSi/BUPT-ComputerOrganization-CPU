@@ -47,7 +47,7 @@ module tb_controller;
         #50;          // 等待50ns
         CLR_n = 1'b1; // 释放复位
         #50;
-
+        
         // --- 测试场景1: 手动读存储器 (SW=010) ---
         $display("------ Test 1: READ_MEMORY ------");
         SW = 3'b010;

@@ -99,3 +99,4 @@ set_global_assignment -name EDA_TEST_BENCH_NAME tb1 -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME uut -section_id tb1
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_controller -section_id tb1
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_controller.v -section_id tb1
+set_global_assignment -name VERILOG_FILE "D:/ModelSI/win64/controller1.v"
