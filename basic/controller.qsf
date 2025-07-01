@@ -54,10 +54,6 @@ set_location_assignment PIN_2 -to C
 set_location_assignment PIN_33 -to CIN
 set_location_assignment PIN_1 -to CLR_n
 set_location_assignment PIN_20 -to DRW
-set_location_assignment PIN_11 -to IR[7]
-set_location_assignment PIN_10 -to IR[6]
-set_location_assignment PIN_9 -to IR[5]
-set_location_assignment PIN_8 -to IR[4]
 set_location_assignment PIN_25 -to LAR
 set_location_assignment PIN_31 -to LDC
 set_location_assignment PIN_30 -to LDZ
@@ -100,3 +96,7 @@ set_global_assignment -name EDA_DESIGN_INSTANCE_NAME uut -section_id tb1
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_controller -section_id tb1
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_controller.v -section_id tb1
 set_global_assignment -name VERILOG_FILE "D:/ModelSI/win64/controller1.v"
+set_location_assignment PIN_11 -to IR[3]
+set_location_assignment PIN_10 -to IR[2]
+set_location_assignment PIN_9 -to IR[1]
+set_location_assignment PIN_8 -to IR[0]
