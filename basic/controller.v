@@ -511,13 +511,14 @@ module controller(
 										STOP <= 1'b0; SHORT <= 1'b0; LONG <= 1'b0;
 										w <= W1; FLAG <= 1'b1;
 									end
+									
 									NOT: begin
 										LPC <= 1'b0; PCINC <= 1'b0; PCADD <= 1'b0;
 										LAR <= 1'b0; ARINC <= 1'b0;
 										LIR <= 1'b0;
 										DRW <= 1'b1;
 										LDZ <= 1'b0; LDC <= 1'b1;
-										S <= 4'b0000; M <= 1'b0; CIN <= 1'b0;
+										S <= 4'b0000; M <= 1'b1; CIN <= 1'b0;
 										MEMW <= 1'b0; ABUS <= 1'b1; SBUS <= 1'b0; MBUS <= 1'b0;
 										SEL <= 4'b0000; SELCTL <= 1'b0;
 										STOP <= 1'b0; SHORT <= 1'b0; LONG <= 1'b0;
