@@ -1,3 +1,45 @@
-# 硬布线控制器设计
+# 🖥️ 硬布线控制器设计
 
-Basic 里面是基础的
+## 📖 项目摘要
+
+我们基于TEC-8实验平台，成功设计并实现了**基于时序信号控制的流水硬布线控制器**。我们的主要贡献包括：
+
+1. **纠正TEC-8平台技术手册的关键理论缺陷**：通过详细实验，我们发现TEC-8平台手册说明中关于节拍信号生成机制的描述与实际不符。实际情况是，这些信号的产生并非由T1的上升沿触发，而是**T3的下降沿**。这一修正**填补了TEC-8理论资料的空白**，为未来的教学、研究和开发提供了准确的指导和思考方向。
+
+2. **实现了高性能的流水硬布线控制器**：我们成功构建了以T3下降沿为触发条件的流水硬布线控制器。经全面测试，该控制器运行稳定、功能正确。通过精心设计的流程图其输出逻辑与官方微程序控制器的结果**完全一致**，验证了本设计的可行性与精确性。
+
+3. **全面开源项目所有资料**：我们丰富的测试数据集包含80余条命令，共计五个任务，并且我们得出了最终卡诺图的化简结果，这些文件包含代码将在GitHub上全部开源，旨在为对TEC-8平台感兴趣的学者和开发者提供便利，共同推动相关领域的研究与创新。
+
+
+## 📁 项目结构
+
+```
+BUPT-ComputerOrganization-CPU/
+├── 📂 basic/                    # 顺序时序型硬布线控制器
+│   ├── controller.v
+│   ├── controller.qpf
+│   ├── controller.qsf
+│   └── controller.qws
+├── 📂 pipeline/                 # 流水时序型硬布线控制器  
+│   ├── controller.v
+│   ├── controller.qpf
+│   ├── controller.qsf
+│   ├── controller.qws
+│   └── controller.cdf
+├── 📂 docs/                     # 项目文档
+│   ├── 课程设计报告.pdf
+│   ├── 测试数据.xlsx
+│   ├── 基础硬布线控制器（表达式与卡诺图化简）.xlsx
+│   └── 流水硬布线控制器（表达式与卡诺图化简）.xlsx
+└── 📄 README.md
+```
+
+## 👥 合作者
+
+- [**RuiyangSi**](https://github.com/RuiyangSi)
+- [**jessieexxx**](https://github.com/jessieexxx)
+- [**yixiusi555**](https://github.com/yixiusi555)  
+- [**linzhimingbuju**](https://github.com/linzhimingbuju)
+
+
+
