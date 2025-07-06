@@ -41,5 +41,10 @@ BUPT-ComputerOrganization-CPU/
 - [**yixiusi555**](https://github.com/yixiusi555)  
 - [**linzhimingbuju**](https://github.com/linzhimingbuju)
 
+## ⚖️ 学术诚信声明
+
+本项目严格遵循学术诚信原则，所有代码和文档均为团队成员原创设计与实现。项目开源旨在促进学术交流与技术分享，请使用者在参考本项目时遵守相应的学术规范，避免直接抄袭，鼓励理解原理后独立完成自己的设计。
+
+
 
 
